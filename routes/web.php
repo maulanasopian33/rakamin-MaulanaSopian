@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,5 +22,8 @@ Route::get('/', function () {
          'message'  => 'Unautorized'
      ]);
  })->name('login');
-
+ Route::get('a', function(){
+    // Request()->session()->put('my_name','maul');
+    dd(Request()->session()->get('my_name'));
+});
  Route::get('/home', 'App\Http\Controllers\Controller@index')->middleware('auth:api');
