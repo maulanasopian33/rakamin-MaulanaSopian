@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ArticlesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -22,8 +23,5 @@ Route::get('/', function () {
          'message'  => 'Unautorized'
      ]);
  })->name('login');
- Route::get('a', function(){
-    // Request()->session()->put('my_name','maul');
-    dd(Request()->session()->get('my_name'));
-});
+ Route::get('a', 'App\Http\Controllers\API\ArticlesController@update');
  Route::get('/home', 'App\Http\Controllers\Controller@index')->middleware('auth:api');

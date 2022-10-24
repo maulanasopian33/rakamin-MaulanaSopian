@@ -90,7 +90,26 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request;
+        try {
+            $category       = categories::find($id);
+            $category->name = $request->name;
+            $category->save();
+            // $create = categories::update($data);
+
+            $respon = [
+                'status'    => true,
+                'message'   => 'Kategori berhasil disimpan',
+                'data'      => $category
+            ];
+        } catch (\Exception $e) {
+            $respon = [
+                'status'    => false,
+                'message'   => 'Kategori gagal disimpan',
+                'data'      => $e->getMessage()
+            ];
+        }
+
+        return response()->json($respon);
     }
 
     /**
